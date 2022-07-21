@@ -18,10 +18,10 @@ namespace HolidaySearch.Models
         */
 
         public int Id { get; private set; }
-        public string Name { get; private set; }
+        public string? Name { get; private set; }
         public DateOnly Arrival { get; private set; }
         public decimal PricePerNight { get; private set; }
-        public List<string> LocalAirports { get; private set; }
+        public List<string>? LocalAirports { get; private set; }
         public int NumberOfNights { get; private set; }
 
     }

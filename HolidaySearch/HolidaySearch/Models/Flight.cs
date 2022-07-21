@@ -18,9 +18,9 @@ namespace HolidaySearch.Models
         */
 
         public int Id { get; private set; }
-        public string Airline { get; private set; }
-        public string DepartureID { get; private set; }
-        public string ArrivalID  { get; private set; }
+        public string? Airline { get; private set; }
+        public string? DepartureID { get; private set; }
+        public string? ArrivalID  { get; private set; }
         public decimal Price   { get; private set; }
         public DateOnly DepartureDate   { get; private set; }
 

@@ -1,12 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using HolidaySearch.Models;
+using Newtonsoft.Json;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HolidaySearch
 {
-    internal class JSONParser
+    public static class JSONParser
     {
+        //Accepts JSON file as input, returns list of objects
+
+        public static List<Flight> LoadFlights(string filePath)
+        {
+
+            var jsonData = File.ReadAllText(filePath);
+            var flights = JsonConvert.DeserializeObject<List<Flight>>(jsonData);
+
+            return flights!;
+        }
+
     }
 }

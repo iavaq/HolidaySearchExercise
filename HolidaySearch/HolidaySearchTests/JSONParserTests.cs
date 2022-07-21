@@ -12,7 +12,7 @@ namespace HolidaySearchTests
         public void Setup()
         {
 
-            filePath =  @".\Data\FlightData.json";
+            filePath = @".\Data\FlightData.json";
 
             /* A Flight object
             "id": 12,
@@ -51,7 +51,7 @@ namespace HolidaySearchTests
                 DepartureID = "MAN",
                 DestinationID = "AGP",
                 Price = 202,
-                DepartureDate = new DateOnly(2023,10,25)
+                DepartureDate = "2023-10-25"
             };
 
             //Act
@@ -59,7 +59,8 @@ namespace HolidaySearchTests
 
 
             //Assert
-            flights.Should().Contain(expected);
+            flights[11].Should().BeEquivalentTo(expected,
+                options => options.ComparingByMembers<Flight>());
         }
     }
 }

@@ -17,12 +17,12 @@ namespace HolidaySearch.Models
         "departure_date": "2023-07-01"
         */
 
-        public int Id { get; private set; }
-        public string? Airline { get; private set; }
-        public string? DepartureID { get; private set; }
-        public string? ArrivalID  { get; private set; }
-        public decimal Price   { get; private set; }
-        public DateOnly DepartureDate   { get; private set; }
+        public int Id { get; set; }
+        public string? Airline { get; set; }
+        public string? DepartureID { get; set; }
+        public string? DestinationID  { get; set; }
+        public decimal Price   { get; set; }
+        public DateOnly DepartureDate   { get; set; }
 
      }
 }

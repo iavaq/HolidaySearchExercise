@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace HolidaySearch.Models
 {
@@ -17,12 +18,20 @@ namespace HolidaySearch.Models
         "nights": 7
         */
 
-        public int Id { get; private set; }
-        public string? Name { get; private set; }
-        public DateOnly Arrival { get; private set; }
-        public decimal PricePerNight { get; private set; }
-        public List<string>? LocalAirports { get; private set; }
-        public int NumberOfNights { get; private set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        [JsonProperty(PropertyName = "arrival_date")]
+        public string ArrivalDate { get; set; }
+
+        [JsonProperty(PropertyName = "price_per_night")]
+        public decimal PricePerNight { get; set; }
+
+        [JsonProperty(PropertyName = "local_airports")]
+        public List<string> LocalAirports { get; set; }
+
+        [JsonProperty(PropertyName = "nights")]
+        public int NumberOfNights { get; set; }
 
     }
 }

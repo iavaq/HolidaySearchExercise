@@ -17,5 +17,14 @@ namespace HolidaySearch
             return flights!;
         }
 
+        public static List<Hotel> LoadHotels(string filePath)
+        {
+
+            var jsonData = File.ReadAllText(filePath);
+            var hotels = JsonConvert.DeserializeObject<List<Hotel>>(jsonData);
+
+            return hotels!;
+        }
+
     }
 }

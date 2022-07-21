@@ -6,13 +6,15 @@ namespace HolidaySearchTests
 {
     public class JSONParserTests
     {
-        private string filePath;
+        private string filePathFlights;
+        private string filePathHotels;
 
         [SetUp]
         public void Setup()
         {
 
-            filePath = @".\Data\FlightData.json";
+            filePathFlights = @".\Data\FlightData.json";
+            filePathHotels = @".\Data\HotelData.json";
 
             /* A Flight object
             "id": 12,
@@ -21,6 +23,15 @@ namespace HolidaySearchTests
             "to": "AGP",
             "price": 202,
             "departure_date": "2023-10-25"
+            
+
+            /* A Hotel object
+            "id": 13,
+            "name": "Jumeirah Port Soller",
+            "arrival_date": "2023-06-15",
+            "price_per_night": 295,
+            "local_airports": ["PMI"],
+            "nights": 10
             */
 
         }
@@ -29,15 +40,15 @@ namespace HolidaySearchTests
         public void ShouldReturnAListOfFlightObjects()
         {
             //Arrange
-
-            
+            int expected = 12;
             
             //Act
-            List<Flight> flights = JSONParser.LoadFlights(filePath);
+            List<Flight> flights = JSONParser.LoadFlights(filePathFlights);
+
 
             //Assert
             flights.Should().NotBeEmpty()
-                .And.HaveCount(12);
+                .And.HaveCount(expected);
         }
 
         [Test]
@@ -55,12 +66,51 @@ namespace HolidaySearchTests
             };
 
             //Act
-            List<Flight> flights = JSONParser.LoadFlights(filePath);
+            List<Flight> flights = JSONParser.LoadFlights(filePathFlights);
 
 
             //Assert
             flights[11].Should().BeEquivalentTo(expected,
                 options => options.ComparingByMembers<Flight>());
+        }
+
+        [Test]
+        public void ShouldReturnAListOfHotelObjects()
+        {
+            //Arrange
+            int expected = 13;
+
+            //Act
+            List<Hotel> hotels = JSONParser.LoadHotels(filePathHotels);
+
+
+            //Assert
+            hotels.Should().NotBeEmpty()
+                .And.HaveCount(expected);
+        }
+
+        [Test]
+        public void ShouldReturnHotelInfo()
+        {
+            //Arrange
+            Hotel expected = new()
+            {
+                Id = 13,
+                Name = "Jumeirah Port Soller",
+                ArrivalDate = "2023-06-15",
+                PricePerNight = 295,
+                LocalAirports = new List<string> {"PMI"},
+                NumberOfNights = 10
+                 
+            };
+
+            //Act
+            List<Hotel> hotels = JSONParser.LoadHotels(filePathHotels);
+
+
+            //Assert
+            hotels[12].Should().BeEquivalentTo(expected,
+                options => options.ComparingByMembers<Hotel>());
         }
     }
 }

@@ -41,15 +41,6 @@ namespace HolidaySearch.Models
         public string DepartureDate { get; set; } //searchable
 
 
-        /*
-        public Flight(string departingFrom, string travellingTo, string departureDate)
-        {
-            DepartureID = departingFrom;
-            DestinationID = travellingTo;
-            DepartureDate = departureDate;
-        }
-        */
-
         public static List<Flight> GetAllFlights()
         {
             //returns all flights from FlightData
@@ -76,14 +67,24 @@ namespace HolidaySearch.Models
             return matchingFlights;
         }
 
-        public static List<Flight> GetMatchingDestination()
+        public static List<Flight> GetMatchingDestination(string destination)
         {
-            return null;
+            //return flights matching: DepartureID, DestinationID, DepartureDate
+            List<Flight> allFlights = GetAllFlights();
+            List<Flight> matchingFlights = allFlights.Where(flight =>
+                flight.DestinationID.Equals(destination)).ToList();
+
+            return matchingFlights;
         }
 
-        public static List<Flight> GetMatchingDate()
+        public static List<Flight> GetMatchingDate(string date)
         {
-            return null;
+            //return flights matching: DepartureID, DestinationID, DepartureDate
+            List<Flight> allFlights = GetAllFlights();
+            List<Flight> matchingFlights = allFlights.Where(flight =>
+                flight.DepartureDate.Equals(date)).ToList();
+
+            return matchingFlights;
         }
     }
 }

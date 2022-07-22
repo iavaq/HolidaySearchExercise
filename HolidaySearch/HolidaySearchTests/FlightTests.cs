@@ -80,7 +80,55 @@ namespace HolidaySearchTests
 
             //Assert
             actual[7].Should().BeEquivalentTo(expected,
-                options => options.ComparingByMembers<Hotel>());
+                options => options.ComparingByMembers<Flight>());
+        }
+
+        [Test]
+        public void ReturnsAFlightWithMatchingDestinationID()
+        {
+            //Arrange
+            string travellingTo = Airports.AGP.ToString();
+            Flight expected = new()
+            {
+                Id = 12,
+                Airline = "Trans American Airlines",
+                DepartureID = "MAN",
+                DestinationID = "AGP",
+                Price = 202,
+                DepartureDate = "2023-10-25"
+            };
+
+            //Act
+            List<Flight> actual = Flight.GetMatchingDestination(travellingTo);
+
+
+            //Assert
+            actual[4].Should().BeEquivalentTo(expected,
+                options => options.ComparingByMembers<Flight>());
+        }
+
+        [Test]
+        public void ReturnsAFlightWithMatchingDepartureDate()
+        {
+            //Arrange
+            string departureDate = "2023-07-01";
+            Flight expected = new()
+            {
+                Id = 11,
+                Airline = "First Class Air",
+                DepartureID = "LGW",
+                DestinationID = "AGP",
+                Price = 155,
+                DepartureDate = "2023-07-01"
+            };
+
+            //Act
+            List<Flight> actual = Flight.GetMatchingDate(departureDate);
+
+
+            //Assert
+            actual[3].Should().BeEquivalentTo(expected,
+                options => options.ComparingByMembers<Flight>());
         }
     }
 }

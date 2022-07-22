@@ -9,6 +9,9 @@ namespace HolidaySearch.Models
 {
     public class Flight
     {
+
+        //TO DO: CREATE LIST OF FLIGHTS FOR AnyAirport and AllLondonAirports
+
         /* SAMPLE FLIGHT OBJECT
         "id": 1,
         "airline": "First Class Air",

@@ -52,8 +52,18 @@ namespace HolidaySearch.Models
         }
         public static List<Flight> GetMatchingFlights(string departingFrom, string travellingTo, string departureDate)
         {
-            return null;
+            //call each method below
+            //find intersections 
+            //return list of flights
 
+            List<Flight> matchingDeparture = GetMatchingDeparture(departingFrom);
+            List<Flight> matchingDestination = GetMatchingDestination(travellingTo);
+            List<Flight> matchingDate = GetMatchingDate(departureDate);
+
+            List<Flight> matchingFlights = matchingDeparture.Intersect(matchingDestination).Intersect(matchingDate).ToList();
+
+            //send list to method to find cheapest
+            return matchingFlights;
         }
 
         
@@ -67,12 +77,12 @@ namespace HolidaySearch.Models
             return matchingFlights;
         }
 
-        public static List<Flight> GetMatchingDestination(string destination)
+        public static List<Flight> GetMatchingDestination(string travellingTo)
         {
             //return flights matching: DepartureID, DestinationID, DepartureDate
             List<Flight> allFlights = GetAllFlights();
             List<Flight> matchingFlights = allFlights.Where(flight =>
-                flight.DestinationID.Equals(destination)).ToList();
+                flight.DestinationID.Equals(travellingTo)).ToList();
 
             return matchingFlights;
         }
@@ -86,5 +96,6 @@ namespace HolidaySearch.Models
 
             return matchingFlights;
         }
+
     }
 }

@@ -13,6 +13,7 @@ namespace HolidaySearchTests
         public void Setup()
         {
             flight = new();
+            //should really mock data from GetAllFlights
         }
 
         [Test]
@@ -129,6 +130,23 @@ namespace HolidaySearchTests
             //Assert
             actual[3].Should().BeEquivalentTo(expected,
                 options => options.ComparingByMembers<Flight>());
+        }
+
+        [Test]
+        public void ReturnsAListOfMatchingFlights()
+        {
+            //Arrange
+            string departingFrom = Airports.MAN.ToString();
+            string travellingTo = Airports.AGP.ToString();
+            string departingDate = "2023-07-01";
+            int expected = 1;
+
+            //Act
+            List<Flight> actual = Flight.GetMatchingFlights(departingFrom, travellingTo, departingDate);
+
+            //Assert
+            actual.Should().NotBeEmpty();
+                //.And.HaveCount(expected);
         }
     }
 }

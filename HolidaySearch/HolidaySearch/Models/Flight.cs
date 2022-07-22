@@ -97,5 +97,16 @@ namespace HolidaySearch.Models
             return matchingFlights;
         }
 
+        private bool Equals(Flight other)
+        {
+            if (other is null)
+                return false;
+
+            return this.DepartureID == other.DepartureID;
+        }
+
+        public override bool Equals(Object obj) => Equals(obj as Flight);
+        public override int GetHashCode() => (Id).GetHashCode();
+        
     }
 }

@@ -145,8 +145,24 @@ namespace HolidaySearchTests
             List<Flight> actual = Flight.GetMatchingFlights(departingFrom, travellingTo, departingDate);
 
             //Assert
-            actual.Should().NotBeEmpty();
-                //.And.HaveCount(expected);
+            actual.Should().NotBeEmpty()
+                .And.HaveCount(expected);
+        }
+
+        [Test]
+        public void ReturnsMatchingIDOFIntersectingFlight()
+        {
+            //Arrange
+            string departingFrom = Airports.MAN.ToString();
+            string travellingTo = Airports.AGP.ToString();
+            string departingDate = "2023-07-01";
+            int expected = 2;
+
+            //Act
+            List<Flight> actual = Flight.GetMatchingFlights(departingFrom, travellingTo, departingDate);
+
+            //Assert
+            actual[0].Id.Should().Be(expected);
         }
     }
 }

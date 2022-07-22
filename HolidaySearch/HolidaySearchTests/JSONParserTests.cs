@@ -43,11 +43,11 @@ namespace HolidaySearchTests
             int expected = 12;
             
             //Act
-            List<Flight> flights = JSONParser.LoadFlights(filePathFlights);
+            List<Flight> actual = JSONParser.LoadFlights(filePathFlights);
 
 
             //Assert
-            flights.Should().NotBeEmpty()
+            actual.Should().NotBeEmpty()
                 .And.HaveCount(expected);
         }
 
@@ -66,11 +66,11 @@ namespace HolidaySearchTests
             };
 
             //Act
-            List<Flight> flights = JSONParser.LoadFlights(filePathFlights);
+            List<Flight> actual = JSONParser.LoadFlights(filePathFlights);
 
 
             //Assert
-            flights[11].Should().BeEquivalentTo(expected,
+            actual[11].Should().BeEquivalentTo(expected,
                 options => options.ComparingByMembers<Flight>());
         }
 
@@ -81,11 +81,11 @@ namespace HolidaySearchTests
             int expected = 13;
 
             //Act
-            List<Hotel> hotels = JSONParser.LoadHotels(filePathHotels);
+            List<Hotel> actual = JSONParser.LoadHotels(filePathHotels);
 
 
             //Assert
-            hotels.Should().NotBeEmpty()
+            actual.Should().NotBeEmpty()
                 .And.HaveCount(expected);
         }
 
@@ -105,11 +105,11 @@ namespace HolidaySearchTests
             };
 
             //Act
-            List<Hotel> hotels = JSONParser.LoadHotels(filePathHotels);
+            List<Hotel> actual = JSONParser.LoadHotels(filePathHotels);
 
 
             //Assert
-            hotels[12].Should().BeEquivalentTo(expected,
+            actual[12].Should().BeEquivalentTo(expected,
                 options => options.ComparingByMembers<Hotel>());
         }
     }

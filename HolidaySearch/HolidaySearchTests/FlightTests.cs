@@ -15,14 +15,18 @@ namespace HolidaySearchTests
         }
 
         [Test]
-        public void GivenNoFieldsReturnsCheapest()
+        public void ReturnsAllFlightFromData()
         {
             //Arrange
+            int expected = 12;
 
             //Act
+            List<Flight> actual = flight.GetAllFlights();
 
 
             //Assert
+            actual.Should().NotBeEmpty()
+                .And.HaveCount(expected);
         }
 
     }

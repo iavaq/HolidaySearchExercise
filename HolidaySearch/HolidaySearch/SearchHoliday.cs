@@ -36,14 +36,14 @@ namespace HolidaySearch
 
         public Tuple<Flight, Hotel> ByDepartureDestinationDate(string departingFrom, string travellingTo, string departureDate)
         {
-            Flight bestFlight = new(departingFrom, travellingTo, departureDate);
+            //Flight bestFlight = new(departingFrom, travellingTo, departureDate);
 
             return null;
         }
 
         public Tuple<Flight, Hotel> ByDestinationDate(string travellingTo, string departureDate)
         {
-            Flight bestFlight = new(travellingTo, departureDate);
+            //Flight bestFlight = new(travellingTo, departureDate);
 
             return null;
         }

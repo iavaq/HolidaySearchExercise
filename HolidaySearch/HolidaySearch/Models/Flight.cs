@@ -40,6 +40,7 @@ namespace HolidaySearch.Models
         [JsonProperty(PropertyName = "departure_date")]
         public string DepartureDate { get; set; } //searchable
 
+
         /*
         public Flight(string departingFrom, string travellingTo, string departureDate)
         {
@@ -49,19 +50,40 @@ namespace HolidaySearch.Models
         }
         */
 
-        public List<Flight> GetAllFlights()
+        public static List<Flight> GetAllFlights()
         {
             //returns all flights from FlightData
             string filePathFlights = @".\Data\FlightData.json";
 
-            return JSONParser.LoadFlights(filePathFlights); 
-        }
-        public List<Flight> GetMatchingFlights(string departingFrom, string travellingTo, string departureDate)
-        { 
-            //return flights matching: DepartureID, DestinationID, DepartureDate
+            List<Flight> allFlights = JSONParser.LoadFlights(filePathFlights);
+            return allFlights;
 
+        }
+        public static List<Flight> GetMatchingFlights(string departingFrom, string travellingTo, string departureDate)
+        {
+            return null;
+
+        }
+
+        
+        public static List<Flight> GetMatchingDeparture(string departingFrom)
+        {
+            //return flights matching: DepartureID, DestinationID, DepartureDate
+            List<Flight> allFlights = GetAllFlights();
+            List<Flight> matchingFlights = allFlights.Where(flight =>
+                flight.DepartureID.Equals(departingFrom)).ToList();
+
+            return matchingFlights;
+        }
+
+        public static List<Flight> GetMatchingDestination()
+        {
             return null;
         }
 
+        public static List<Flight> GetMatchingDate()
+        {
+            return null;
+        }
     }
 }

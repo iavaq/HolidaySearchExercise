@@ -31,6 +31,10 @@ namespace HolidaySearch.Models
         [JsonProperty(PropertyName = "departure_date")]
         public string DepartureDate { get; set; }
 
+        public Flight()
+        {
+           
+        }
         public Flight(string departingFrom, string travellingTo, string departureDate)
         {
             DepartureID = departingFrom;

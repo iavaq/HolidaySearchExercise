@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace HolidaySearch.Models
 {
-    public enum AirportID
+    public enum Airports
     {
+        Any_Airport,
+        Any_London_Airport,
         MAN,
         AGP,
         PMI,

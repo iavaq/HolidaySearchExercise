@@ -48,5 +48,11 @@ namespace HolidaySearch.Models
             DepartureDate = departureDate;
         }
 
+        public Flight GetCheapest()
+        {
+            //Given no fields, return cheapest flight 
+            return null;
+        }
+
     }
 }

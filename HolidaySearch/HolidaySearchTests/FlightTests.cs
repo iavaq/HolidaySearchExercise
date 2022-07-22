@@ -15,9 +15,14 @@ namespace HolidaySearchTests
         }
 
         [Test]
-        public void Test1()
+        public void GivenNoFieldsReturnsCheapest()
         {
+            //Arrange
 
+            //Act
+
+
+            //Assert
         }
 
     }

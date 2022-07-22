@@ -1,0 +1,32 @@
+#### Customer #1
+
+##### Input
+ * Departing from: Manchester Airport (MAN)
+ * Traveling to: Malaga Airport (AGP)
+ * Departure Date: 2023/07/01
+ * Duration: 7 nights
+
+##### Expected result  
+ * Flight 2 and Hotel 9
+
+### Customer #2
+
+##### Input
+ * Departing from: Any London Airport
+ * Traveling to: Mallorca Airport (PMI)
+ * Departure Date: 2023/06/15
+ * Duration: 10 nights
+
+##### Expected result  
+ * Flight 6 and Hotel 5
+
+### Customer #3
+
+##### Input
+ * Departing from: Any Airport
+ * Traveling to: Gran Canaria Airport (LPA)
+ * Departure Date: 2022/11/10
+ * Duration: 14 nights
+
+##### Expected result  
+ * Flight 7 and Hotel 6

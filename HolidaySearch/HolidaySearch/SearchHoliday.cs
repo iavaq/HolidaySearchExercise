@@ -16,7 +16,23 @@ namespace HolidaySearch
 
         //search by given combination of fields
         //returns a tuple of best flight and hotel
-        //???if no fields given, return tuple of cheapest flight and hotel
+
+        //OTB website defaults:
+        //Desitnation: Anywhere
+        //Departure: All Airports 
+        //Date: current + 3 days
+        //Duration: 7 
+        //fields are always filled!!!
+
+        /* Example input
+        * Departing from: Manchester Airport (MAN)
+        * Traveling to: Malaga Airport (AGP)
+        * Departure Date: 2023/07/01
+        * Duration: 7 nights
+        ##### Expected result  
+        * Flight 2 and Hotel 9
+        */
+
 
         public Tuple<Flight, Hotel> ByDepartureDestinationDate(string departingFrom, string travellingTo, string departureDate)
         {

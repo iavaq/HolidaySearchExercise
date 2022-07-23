@@ -133,7 +133,6 @@ namespace HolidaySearch.Models
         }
 
         public override bool Equals(Object obj) => Equals(obj as Flight);
-        public override int GetHashCode() => (Id).GetHashCode();
-        
+        public override int GetHashCode() => (Id).GetHashCode();     
     }
 }

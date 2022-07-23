@@ -53,9 +53,9 @@ namespace HolidaySearch.Models
             return allFlights;
 
         }
-        public static List<Flight> GetMatchingFlights(string departingFrom, string travellingTo, string departureDate)
+        public static Flight GetBestValueFlight(string departingFrom, string travellingTo, string departureDate)
         {
-            //call each method below
+            //call each get matches method below
             //find intersections 
             //return list of flights
 
@@ -66,23 +66,47 @@ namespace HolidaySearch.Models
             List<Flight> matchingFlights = matchingDeparture.Intersect(matchingDestination).Intersect(matchingDate).ToList();
 
             //send list to method to find cheapest
-            return matchingFlights;
+            return OrderByLowestPrice(matchingFlights).First();
         }
 
+        public static List<Flight> OrderByLowestPrice(List<Flight> matchingFlights)
+        {
+            List<Flight> lowestPriceFlights = matchingFlights.OrderBy(flight => flight.Price).ToList();
+
+            return lowestPriceFlights;
+        }
         
         public static List<Flight> GetMatchingDeparture(string departingFrom)
-        {
-            //return flights matching: DepartureID, DestinationID, DepartureDate
+        { 
             List<Flight> allFlights = GetAllFlights();
-            List<Flight> matchingFlights = allFlights.Where(flight =>
-                flight.DepartureID.Equals(departingFrom)).ToList();
 
-            return matchingFlights;
+
+            if (departingFrom.Equals(Airports.AnyAirport.ToString()))
+                return allFlights;
+
+            else if (departingFrom.Equals(Airports.AnyLondonAirport.ToString()))
+            {
+                List<string> londonAirports = new(){Airports.LTN.ToString(),
+                                                    Airports.LGW.ToString()};
+
+                List<Flight> matchingFlights = allFlights.Where(flight =>
+                    londonAirports.Contains(flight.DepartureID)).ToList();
+
+                return matchingFlights;
+            }
+
+            else
+            {
+                List<Flight> matchingFlights = allFlights.Where(flight =>
+                    flight.DepartureID.Equals(departingFrom)).ToList();
+
+                return matchingFlights;
+            }
+
         }
 
         public static List<Flight> GetMatchingDestination(string travellingTo)
         {
-            //return flights matching: DepartureID, DestinationID, DepartureDate
             List<Flight> allFlights = GetAllFlights();
             List<Flight> matchingFlights = allFlights.Where(flight =>
                 flight.DestinationID.Equals(travellingTo)).ToList();
@@ -92,7 +116,6 @@ namespace HolidaySearch.Models
 
         public static List<Flight> GetMatchingDate(string date)
         {
-            //return flights matching: DepartureID, DestinationID, DepartureDate
             List<Flight> allFlights = GetAllFlights();
             List<Flight> matchingFlights = allFlights.Where(flight =>
                 flight.DepartureDate.Equals(date)).ToList();
@@ -100,12 +123,13 @@ namespace HolidaySearch.Models
             return matchingFlights;
         }
 
+        //Helper methods for Flight instances equality 
         private bool Equals(Flight other)
         {
             if (other is null)
                 return false;
 
-            return this.DepartureID == other.DepartureID;
+            return this.Id == other.Id;
         }
 
         public override bool Equals(Object obj) => Equals(obj as Flight);

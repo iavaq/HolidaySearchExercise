@@ -133,20 +133,33 @@ namespace HolidaySearchTests
         }
 
         [Test]
-        public void ReturnsAListOfMatchingFlights()
+        public void ReturnsAListofLowestPrices()
         {
             //Arrange
-            string departingFrom = Airports.MAN.ToString();
-            string travellingTo = Airports.AGP.ToString();
-            string departingDate = "2023-07-01";
-            int expected = 1;
+            List<Flight> flights = Flight.GetAllFlights();
+            int expected = 6;
 
             //Act
-            List<Flight> actual = Flight.GetMatchingFlights(departingFrom, travellingTo, departingDate);
+            List<Flight> actual = Flight.OrderByLowestPrice(flights);
 
             //Assert
-            actual.Should().NotBeEmpty()
-                .And.HaveCount(expected);
+            actual[0].Id.Should().Be(expected);
+        }
+
+        [Test]
+        public void ReturnsMatchingFlightIDWithLowestPrice()
+        {
+            //Arrange
+            string departingFrom = Airports.LGW.ToString();
+            string travellingTo = Airports.AGP.ToString();
+            string departingDate = "2023-07-01";
+            int expected = 11;
+
+            //Act
+            Flight actual = Flight.GetBestValueFlight(departingFrom, travellingTo, departingDate);
+
+            //Assert
+            actual.Id.Should().Be(expected);
         }
 
         [Test]
@@ -159,10 +172,42 @@ namespace HolidaySearchTests
             int expected = 2;
 
             //Act
-            List<Flight> actual = Flight.GetMatchingFlights(departingFrom, travellingTo, departingDate);
+            Flight actual = Flight.GetBestValueFlight(departingFrom, travellingTo, departingDate);
 
             //Assert
-            actual[0].Id.Should().Be(expected);
+            actual.Id.Should().Be(expected);
+        }
+
+        [Test]
+        public void ReturnsMatchingFlightDepartingFromAnyAirport()
+        {
+            //Arrange
+            string departingFrom = Airports.AnyLondonAirport.ToString();
+            string travellingTo = Airports.PMI.ToString();
+            string departingDate = "2023-06-15";
+            int expected = 6;
+
+            //Act
+            Flight actual = Flight.GetBestValueFlight(departingFrom, travellingTo, departingDate);
+
+            //Assert
+            actual.Id.Should().Be(expected);
+        }
+
+        [Test]
+        public void ReturnsMatchingFlightDepartingFromAnylondonAirport()
+        {
+            //Arrange
+            string departingFrom = Airports.AnyAirport.ToString();
+            string travellingTo = Airports.LPA.ToString();
+            string departingDate = "2022-11-10";
+            int expected = 7;
+
+            //Act
+            Flight actual = Flight.GetBestValueFlight(departingFrom, travellingTo, departingDate);
+
+            //Assert
+            actual.Id.Should().Be(expected);
         }
     }
 }

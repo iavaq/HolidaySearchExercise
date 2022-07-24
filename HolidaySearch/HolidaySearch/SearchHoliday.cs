@@ -55,7 +55,7 @@ namespace HolidaySearch
             return Tuple.Create(bestValueFlight!, bestValueHotel!);
         }
 
-        public Tuple<List<Flight>, List<Hotel>> GetBestValueOptions()
+        public Tuple<List<Flight>, List<Hotel>>? GetBestValueOptions()
         {
             return null;
         }

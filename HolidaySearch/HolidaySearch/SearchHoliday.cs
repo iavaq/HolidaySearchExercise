@@ -38,6 +38,14 @@ namespace HolidaySearch
         * Flight 2 and Hotel 9
         */
 
+        
+        public SearchHoliday(string departingFrom, string travellingTo, string departureDate, int duration)
+        {
+            DepartingFrom = departingFrom;
+            TravellingTo = travellingTo;
+            DepartureDate = departureDate;  
+            Duration = duration;
+        }
 
         public Tuple<Flight, Hotel> GetBestValueHoliday()
         {

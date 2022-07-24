@@ -10,7 +10,6 @@ namespace HolidaySearch
 
         public static List<Flight> LoadFlights(string filePath)
         {
-
             var jsonData = File.ReadAllText(filePath);
             var flights = JsonConvert.DeserializeObject<List<Flight>>(jsonData);
 
@@ -19,7 +18,6 @@ namespace HolidaySearch
 
         public static List<Hotel> LoadHotels(string filePath)
         {
-
             var jsonData = File.ReadAllText(filePath);
             var hotels = JsonConvert.DeserializeObject<List<Hotel>>(jsonData);
 

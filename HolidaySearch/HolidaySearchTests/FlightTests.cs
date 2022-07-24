@@ -13,7 +13,6 @@ namespace HolidaySearchTests
         public void Setup()
         {
             flight = new();
-            //should really mock data from GetAllFlights
         }
 
         [Test]
@@ -134,7 +133,7 @@ namespace HolidaySearchTests
 
 
         [Test]
-        public void ReturnsMatchingIDOFIntersectingFlight()
+        public void ReturnsMatchingIDOFBestValueFlight()
         {
             //Arrange
             string departingFrom = Airports.MAN.ToString();
@@ -143,14 +142,14 @@ namespace HolidaySearchTests
             int expected = 2;
 
             //Act
-            Flight actual = Flight.GetBestValueFlight(departingFrom, travellingTo, departingDate);
+            List<Flight> actual = Flight.GetBestValueFlights(departingFrom, travellingTo, departingDate);
 
             //Assert
-            actual.Id.Should().Be(expected);
+            actual[0].Id.Should().Be(expected);
         }
 
         [Test]
-        public void ReturnsMatchingFlightDepartingFromAnyAirport()
+        public void ReturnsMatchingIdOfFlightDepartingFromAnyAirport()
         {
             //Arrange
             string departingFrom = Airports.AnyLondonAirport.ToString();
@@ -159,14 +158,14 @@ namespace HolidaySearchTests
             int expected = 6;
 
             //Act
-            Flight actual = Flight.GetBestValueFlight(departingFrom, travellingTo, departingDate);
+            List<Flight> actual = Flight.GetBestValueFlights(departingFrom, travellingTo, departingDate);
 
             //Assert
-            actual.Id.Should().Be(expected);
+            actual[0].Id.Should().Be(expected);
         }
 
         [Test]
-        public void ReturnsMatchingFlightDepartingFromAnylondonAirport()
+        public void ReturnsMatchingIdOfFlightDepartingFromAnylondonAirport()
         {
             //Arrange
             string departingFrom = Airports.AnyAirport.ToString();
@@ -175,10 +174,10 @@ namespace HolidaySearchTests
             int expected = 7;
 
             //Act
-            Flight actual = Flight.GetBestValueFlight(departingFrom, travellingTo, departingDate);
+            List<Flight> actual = Flight.GetBestValueFlights(departingFrom, travellingTo, departingDate);
 
             //Assert
-            actual.Id.Should().Be(expected);
+            actual[0].Id.Should().Be(expected);
         }
 
         [Test]
@@ -196,7 +195,7 @@ namespace HolidaySearchTests
         }
 
         [Test]
-        public void ReturnsMatchingFlightIDWithLowestPrice()
+        public void ReturnsMatchingFlightIdWithLowestPrice()
         {
             //Arrange
             string departingFrom = Airports.LGW.ToString();
@@ -205,10 +204,10 @@ namespace HolidaySearchTests
             int expected = 11;
 
             //Act
-            Flight actual = Flight.GetBestValueFlight(departingFrom, travellingTo, departingDate);
+            List<Flight> actual = Flight.GetBestValueFlights(departingFrom, travellingTo, departingDate);
 
             //Assert
-            actual.Id.Should().Be(expected);
+            actual[0].Id.Should().Be(expected);
         }
     }
 }

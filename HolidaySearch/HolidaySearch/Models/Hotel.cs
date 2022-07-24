@@ -48,10 +48,9 @@ namespace HolidaySearch.Models
             string filePathHotel = @".\Data\HotelData.json";
  
             return JSONParser.LoadHotels(filePathHotel);
-
         }
         
-        public static Hotel GetBestValueHotel(string arrivalAirport, string date, int duration)
+        public static List<Hotel> GetBestValueHotels(string arrivalAirport, string date, int duration)
         {
             //call each get matches method below
             //find intersections 
@@ -64,31 +63,28 @@ namespace HolidaySearch.Models
             List<Hotel> matchingHotels = matchingAirports.Intersect(matchingDate).Intersect(matchingDuration).ToList();
 
             //send list to method to find cheapest
-            return OrderByLowestPrice(matchingHotels).First();
+            return OrderByLowestPrice(matchingHotels);
         }
        
         public static List<Hotel> OrderByLowestPrice(List<Hotel> matchingHotels)
         {
             List<Hotel> lowestPriceHotels = matchingHotels.OrderBy(hotel => hotel.PricePerNight).ToList();
-            //how to sort hotels with same price????
+            //What about hotels with same price? how will they be sorted?
 
             return lowestPriceHotels;
         }
 
         public static List<Hotel> GetLocalHotels(string arrivalAirport)
         {
-            List<Hotel> allHotels = GetAllHotels();
-
-            List<Hotel> matchingHotels = allHotels.Where(hotel =>
+            List<Hotel> matchingHotels = GetAllHotels().Where(hotel =>
                 hotel.LocalAirports.Contains(arrivalAirport)).ToList();
 
-                return matchingHotels;
+            return matchingHotels;
         }
 
         public static List<Hotel> GetMatchingDate(string date)
         {
-            List<Hotel> allHotels = GetAllHotels();
-            List<Hotel> matchingHotels = allHotels.Where(hotel =>
+            List<Hotel> matchingHotels = GetAllHotels().Where(hotel =>
                 hotel.ArrivalDate.Equals(date)).ToList();
 
             return matchingHotels;
@@ -96,8 +92,7 @@ namespace HolidaySearch.Models
 
         public static List<Hotel> GetMatchingDuration(int duration)
         {
-            List<Hotel> allHotels = GetAllHotels();
-            List<Hotel> matchingHotels = allHotels.Where(hotel =>
+            List<Hotel> matchingHotels = GetAllHotels().Where(hotel =>
                 hotel.NumberOfNights.Equals(duration)).ToList();
 
             return matchingHotels;

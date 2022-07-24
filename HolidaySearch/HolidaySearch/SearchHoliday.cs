@@ -49,15 +49,24 @@ namespace HolidaySearch
 
         public Tuple<Flight, Hotel> GetBestValueHoliday()
         {
-            Flight bestValueFlight = Flight.GetBestValueFlight(DepartingFrom, TravellingTo, DepartureDate);
-            Hotel bestValueHotel = Hotel.GetBestValueHotel(TravellingTo, DepartureDate, Duration);
+            //returns ordered list from lowest price 
+            Tuple<List<Flight>, List<Hotel>> options = GetBestValueOptions();
 
-            return Tuple.Create(bestValueFlight!, bestValueHotel!);
+            //select first items from list
+            Tuple<Flight, Hotel> bestValueHoliday = Tuple.Create(options.Item1.First(), options.Item2.First()); 
+
+            return bestValueHoliday;
+
         }
 
-        public Tuple<List<Flight>, List<Hotel>>? GetBestValueOptions()
+        public Tuple<List<Flight>, List<Hotel>> GetBestValueOptions()
         {
-            return null;
+            List<Flight> bestValueFlights = Flight.GetBestValueFlights(DepartingFrom, TravellingTo, DepartureDate);
+            List<Hotel> bestValueHotels = Hotel.GetBestValueHotels(TravellingTo, DepartureDate, Duration);
+
+            Tuple<List<Flight>, List<Hotel>> bestValueOptions = Tuple.Create(bestValueFlights, bestValueHotels);
+
+            return bestValueOptions;
         }
     }
 }

@@ -12,7 +12,6 @@ namespace HolidaySearchTests
         [SetUp]
         public void Setup()
         {
-
             filePathFlights = @".\Data\FlightData.json";
             filePathHotels = @".\Data\HotelData.json";
 
@@ -33,7 +32,6 @@ namespace HolidaySearchTests
             "local_airports": ["PMI"],
             "nights": 10
             */
-
         }
 
         [Test]
@@ -52,7 +50,7 @@ namespace HolidaySearchTests
         }
 
         [Test]
-        public void ShouldReturnFlightInfo()
+        public void ShouldReturnAFlightInfo()
         {
             //Arrange
             Flight expected = new()

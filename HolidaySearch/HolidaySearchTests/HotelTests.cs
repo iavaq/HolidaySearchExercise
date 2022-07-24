@@ -16,16 +16,13 @@ namespace HolidaySearchTests
         }
 
         [Test]
-        public void ReturnsAllHoteslFromData()
+        public void ReturnsAllHotelsFromData()
         {
-            //DO MOCK
-
             //Arrange
             int expected = 13;
 
             //Act
             List<Hotel> actual = Hotel.GetAllHotels();
-
 
             //Assert
             actual.Should().NotBeEmpty()
@@ -104,7 +101,7 @@ namespace HolidaySearchTests
         }
 
         [Test]
-        public void ReturnsAHotelWithMatchingDate()
+        public void ReturnsHotelInfoWithMatchingDate()
         {
             //Arrange
             string arrivalDate = "2023-07-01";
@@ -144,7 +141,7 @@ namespace HolidaySearchTests
         }
 
         [Test]
-        public void ReturnsAHotelWithMatchingDuration()
+        public void ReturnsHotelInfoWithMatchingDuration()
         {
             //Arrange
             int duration = 7;
@@ -177,11 +174,11 @@ namespace HolidaySearchTests
             int expected = 9;
 
             //Act
-            Hotel actual = Hotel.GetBestValueHotel(arrivalAirport, arrivalDate, duration);
+            List<Hotel> actual = Hotel.GetBestValueHotels(arrivalAirport, arrivalDate, duration);
 
 
             //Assert
-            actual.Id.Should().Be(9);
+            actual[0].Id.Should().Be(expected);
         }
     }
 }

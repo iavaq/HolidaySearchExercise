@@ -132,35 +132,6 @@ namespace HolidaySearchTests
                 options => options.ComparingByMembers<Flight>());
         }
 
-        [Test]
-        public void ReturnsAListofLowestPrices()
-        {
-            //Arrange
-            List<Flight> flights = Flight.GetAllFlights();
-            int expected = 6;
-
-            //Act
-            List<Flight> actual = Flight.OrderByLowestPrice(flights);
-
-            //Assert
-            actual[0].Id.Should().Be(expected);
-        }
-
-        [Test]
-        public void ReturnsMatchingFlightIDWithLowestPrice()
-        {
-            //Arrange
-            string departingFrom = Airports.LGW.ToString();
-            string travellingTo = Airports.AGP.ToString();
-            string departingDate = "2023-07-01";
-            int expected = 11;
-
-            //Act
-            Flight actual = Flight.GetBestValueFlight(departingFrom, travellingTo, departingDate);
-
-            //Assert
-            actual.Id.Should().Be(expected);
-        }
 
         [Test]
         public void ReturnsMatchingIDOFIntersectingFlight()
@@ -202,6 +173,36 @@ namespace HolidaySearchTests
             string travellingTo = Airports.LPA.ToString();
             string departingDate = "2022-11-10";
             int expected = 7;
+
+            //Act
+            Flight actual = Flight.GetBestValueFlight(departingFrom, travellingTo, departingDate);
+
+            //Assert
+            actual.Id.Should().Be(expected);
+        }
+
+        [Test]
+        public void ReturnsOrderedListofFlightsFromLowestPrice()
+        {
+            //Arrange
+            List<Flight> flights = Flight.GetAllFlights();
+            int expected = 6;
+
+            //Act
+            List<Flight> actual = Flight.OrderByLowestPrice(flights);
+
+            //Assert
+            actual[0].Id.Should().Be(expected);
+        }
+
+        [Test]
+        public void ReturnsMatchingFlightIDWithLowestPrice()
+        {
+            //Arrange
+            string departingFrom = Airports.LGW.ToString();
+            string travellingTo = Airports.AGP.ToString();
+            string departingDate = "2023-07-01";
+            int expected = 11;
 
             //Act
             Flight actual = Flight.GetBestValueFlight(departingFrom, travellingTo, departingDate);

@@ -51,7 +51,7 @@ namespace HolidaySearch.Models
 
         }
         
-        public static Hotel GetBestValueFlight(string arrivalAirport, string date, int duration)
+        public static Hotel GetBestValueHotel(string arrivalAirport, string date, int duration)
         {
             //call each get matches method below
             //find intersections 
@@ -70,16 +70,16 @@ namespace HolidaySearch.Models
         public static List<Hotel> OrderByLowestPrice(List<Hotel> matchingHotels)
         {
             List<Hotel> lowestPriceHotels = matchingHotels.OrderBy(hotel => hotel.PricePerNight).ToList();
+            //how to sort hotels with same price????
 
             return lowestPriceHotels;
         }
 
         public static List<Hotel> GetLocalHotels(string arrivalAirport)
         {
-            List<Hotel> allHotel = GetAllHotels();
+            List<Hotel> allHotels = GetAllHotels();
 
-
-            List<Hotel> matchingHotels = allHotel.Where(hotel =>
+            List<Hotel> matchingHotels = allHotels.Where(hotel =>
                 hotel.LocalAirports.Contains(arrivalAirport)).ToList();
 
                 return matchingHotels;

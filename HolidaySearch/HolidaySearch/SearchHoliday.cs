@@ -14,10 +14,10 @@ namespace HolidaySearch
         public string DepartureDate { get; set; }
         public int Duration { get; set; }
 
-        public Tuple<Flight, Hotel> BestValueHoliday { get; private set; }
+        public Tuple<Flight?, Hotel?> BestValueHoliday { get; private set; }
 
         //TO RETURN OPTIONS
-        public Tuple<List<Flight>, List<Hotel>> BestValueOptions { get; private set; }
+        public Tuple<List<Flight>?, List<Hotel>?> BestValueOptions { get; private set; }
 
         //search by given combination of fields
         //returns a tuple of best flight and hotel
@@ -49,8 +49,10 @@ namespace HolidaySearch
 
         public Tuple<Flight, Hotel> GetBestValueHoliday()
         {
+            Flight bestValueFlight = Flight.GetBestValueFlight(DepartingFrom, TravellingTo, DepartureDate);
+            Hotel bestValueHotel = Hotel.GetBestValueHotel(TravellingTo, DepartureDate, Duration);
 
-            return null;
+            return Tuple.Create(bestValueFlight!, bestValueHotel!);
         }
 
         public Tuple<List<Flight>, List<Hotel>> GetBestValueOptions()

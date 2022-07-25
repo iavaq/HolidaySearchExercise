@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HolidaySearch.Models;
+﻿using HolidaySearch.Models;
 
 namespace HolidaySearch
 {
@@ -56,7 +51,6 @@ namespace HolidaySearch
             Tuple<Flight, Hotel> bestValueHoliday = Tuple.Create(options.Item1.First(), options.Item2.First()); 
 
             return bestValueHoliday;
-
         }
 
         public Tuple<List<Flight>, List<Hotel>> GetBestValueOptions()

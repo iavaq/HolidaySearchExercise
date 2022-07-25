@@ -62,6 +62,9 @@ namespace HolidaySearchTests
             //Assert
             actual.Should().BeEquivalentTo(expected,
                 options => options.ComparingByMembers<Flight>());
+
+            actual.Should().BeEquivalentTo(expected,
+              options => options.ComparingByMembers<Hotel>());
         }
 
         [Test]
@@ -97,6 +100,9 @@ namespace HolidaySearchTests
             //Assert
             actual.Should().BeEquivalentTo(expected,
                 options => options.ComparingByMembers<Flight>());
+
+            actual.Should().BeEquivalentTo(expected,
+              options => options.ComparingByMembers<Hotel>());
         }
 
         [Test]
@@ -132,6 +138,9 @@ namespace HolidaySearchTests
             //Assert
             actual.Should().BeEquivalentTo(expected,
                 options => options.ComparingByMembers<Flight>());
+
+            actual.Should().BeEquivalentTo(expected,
+              options => options.ComparingByMembers<Hotel>());
         }
     }
 }
